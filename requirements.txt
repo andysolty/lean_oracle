@@ -1,4 +1,4 @@
 streamlit
 gspread
 pandas
-twelve-data
+twelvedata
