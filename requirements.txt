@@ -2,3 +2,4 @@ streamlit
 gspread
 pandas
 twelvedata
+matplotlib
