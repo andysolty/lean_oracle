@@ -1,5 +1,8 @@
 streamlit
 gspread
+google-auth
 pandas
 twelvedata
 matplotlib
+pytz
+requests
