@@ -75,10 +75,16 @@ _SCOPES = [
 
 @st.cache_resource(show_spinner=False)
 def _get_gspread_client() -> gspread.Client:
-    creds = SACredentials.from_service_account_info(
-        st.secrets["gcp_service_account"], scopes=_SCOPES
-    )
-    return gspread.authorize(creds)
+    # Build the credentials dict explicitly so we control every field
+    raw = dict(st.secrets["gcp_service_account"])
+    # SACredentials requires this field — add it if missing
+    raw.setdefault("type", "service_account")
+    try:
+        creds = SACredentials.from_service_account_info(raw, scopes=_SCOPES)
+        return gspread.authorize(creds)
+    except Exception as e:
+        st.error(f"Google auth failed: {e}")
+        raise
 
 
 def _get_or_create_worksheet(sh: gspread.Spreadsheet, title: str, rows: int = 200, cols: int = 10):
@@ -152,7 +158,7 @@ def load_universe_from_sheet() -> list[dict]:
         st.error("'Solty 100 List' worksheet not found in the spreadsheet.")
         return []
     except Exception as e:
-        st.error(f"Could not load universe from sheet: {e}")
+        st.error(f"Could not load universe from sheet: {type(e).__name__}: {e}")
         return []
 
     if not rows:
