@@ -76,7 +76,7 @@ _SCOPES = [
 @st.cache_resource(show_spinner=False)
 def _get_gspread_client() -> gspread.Client:
     creds = SACredentials.from_service_account_info(
-        st.secrets["connections.gsheets"], scopes=_SCOPES
+        st.secrets["gcp_service_account"], scopes=_SCOPES
     )
     return gspread.authorize(creds)
 
