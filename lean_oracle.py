@@ -258,7 +258,7 @@ _KNOWN_TSX = {
     "SHOP","CSU","ENGH","KXS","DSG","DCBO","BBTV","LSPD","NVEI","TOI",
     "ALYA","CWAN","DND","MTLO","GIB","MG","BB","TELO",
     # Bitcoin / Crypto Mining
-    "HUT","BITF","MARA","RIOT","CBIT","DMGI",
+    "HUT","BITF","CBIT","DMGI",
     # Consumer / Retail
     "ATD","L","MRU","WN","EMP","DOL","CTC","GOOS","QSR","MTY","RECP",
     "SIQ","PBH","HBC","DLCG",
